@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.example.org/accountservice"
+        elementFormDefault="qualified">
+
+    <xsd:element name="GetAccountsRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="firstName" type="xsd:string" />
+                <xsd:element name="surname" type="xsd:string" />
+                <xsd:element name="dateOfBirth" type="xsd:date" />
+                <xsd:element name="customerID" type="xsd:string" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="GetAccountsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="accountsFound" type="xsd:integer" />
+                <xsd:element name="Accounts">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="Account" maxOccurs="unbounded" minOccurs="0">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="accountNumber" type="xsd:string" />
+                                        <xsd:element name="accountType" type="xsd:string" />
+                                        <xsd:element name="isOpen" type="xsd:boolean" />
+                                        <xsd:element name="isJointAccount" type="xsd:boolean" />
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</schema>
