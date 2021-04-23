@@ -17,7 +17,7 @@
     <xsd:element name="GetAccountsResponse">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="accountsFound" type="xsd:integer" />
+                <xsd:element name="accountsFound" type="xsd:int" />
                 <xsd:element name="Accounts">
                     <xsd:complexType>
                         <xsd:sequence>
@@ -26,8 +26,8 @@
                                     <xsd:sequence>
                                         <xsd:element name="accountNumber" type="xsd:string" />
                                         <xsd:element name="accountType" type="xsd:string" />
-                                        <xsd:element name="isOpen" type="xsd:boolean" />
-                                        <xsd:element name="isJointAccount" type="xsd:boolean" />
+                                        <xsd:element name="open" type="xsd:boolean" />
+                                        <xsd:element name="jointAccount" type="xsd:boolean" />
                                     </xsd:sequence>
                                 </xsd:complexType>
                             </xsd:element>
