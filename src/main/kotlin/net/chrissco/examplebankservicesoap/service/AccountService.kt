@@ -1,8 +1,10 @@
 package net.chrissco.examplebankservicesoap.service
 
-import net.chrissco.examplebankservicesoap.model.Customer
+import net.chrissco.examplebankservicesoap.model.Account
 import net.chrissco.examplebankservicesoap.repository.AccountRepository
 import net.chrissco.examplebankservicesoap.repository.CustomerRepository
+import net.chrissco.examplebankservicesoap.service.utils.accountsToGetAccountsResponse
+import net.chrissco.examplebankservicesoap.service.utils.findCustomerFromGetAccountsRequest
 import org.example.accountservice.GetAccountsRequest
 import org.example.accountservice.GetAccountsResponse
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,21 +20,11 @@ class AccountService {
     lateinit var accountRepository: AccountRepository
 
     fun getAccountsResponse(request: GetAccountsRequest) : GetAccountsResponse {
-        // Placeholder to ensure data reads correctly from H2
-        println(customerRepository.findAll().toList())
-        println(accountRepository.findAll().toList())
-
-        // TODO: replace this with something that returns a 'real' response
-        val response = GetAccountsResponse()
-        response.accountsFound = 1
-        val account = GetAccountsResponse.Accounts.Account()
-        account.accountNumber = "12345678"
-        account.accountType = "Current Account"
-        account.isJointAccount = false
-        account.isOpen = true
-        response.accounts = GetAccountsResponse.Accounts()
-        response.accounts.account.add(account)
-        return response
+        val customer = findCustomerFromGetAccountsRequest(request, customerRepository)
+        val accounts: List<Account> =
+            if (customer != null) accountRepository.getAccountsForCustomerID(customer.customerID)
+            else listOf()
+        return accountsToGetAccountsResponse(accounts)
     }
 
 }
