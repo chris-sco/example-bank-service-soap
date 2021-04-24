@@ -18,6 +18,14 @@ sourceSets {
 	}
 }
 
+buildscript {
+	dependencies {
+		classpath("org.jetbrains.kotlin:kotlin-noarg:1.4.32")
+	}
+}
+
+apply(plugin = "kotlin-jpa")
+
 repositories {
 	mavenCentral()
 }
